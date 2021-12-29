@@ -1,5 +1,6 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const Verify = require("../api/db/models/verify")
 
 //Routing via express in mehrern dateien zu einer main.js zusammengestellt
 
