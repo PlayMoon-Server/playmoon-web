@@ -22,8 +22,7 @@ let accountSchema = new Schema({
         type: Boolean,
         required: true
     }
-})
-
+}, { timestamps: true })
 let Account = mongoose.model("Account", accountSchema)
 
 module.exports = Account
