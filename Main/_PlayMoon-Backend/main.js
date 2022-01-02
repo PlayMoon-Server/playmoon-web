@@ -24,12 +24,13 @@ let routeRegister = require('./routing/register')
 //--API--END--
 
 //--USE--
-app.use(routeRegister)
 
+app.use(routeRegister)
 app.use(cors);
 app.use(bodyParser('t'))
 app.use(cookieParser('t'))
-    //--USE-END
+
+//--USE-END
 
 //Connect to mongodb
 let dbURI = 'mongodb+srv://admin:PQ9KKqflvgdCcqRb@cluster0.rmzdz.mongodb.net/playmoon?retryWrites=true&w=majority'
