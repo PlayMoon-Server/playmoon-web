@@ -2,21 +2,25 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let accountSchema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
-        required: true
+        required: false
     },
     password: {
+        type: String,
+        required: true
+    },
+    token: {
         type: String,
         required: true
     },
     uuid: {
         type: String,
         required: true
+    },
+    dcTag: {
+        type: String,
+        required: false
     },
     verified: {
         type: Boolean,
