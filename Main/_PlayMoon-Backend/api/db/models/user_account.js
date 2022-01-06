@@ -13,6 +13,10 @@ const userAccountSchema = new Schema({
     password: {
         type: String,
         required: false
+    },
+    email: {
+        type: String,
+        required: false
     }
 }, { timestamps: true, collection: 'user_accounts' })
 

@@ -13,15 +13,18 @@ const cors = require('cors')({
 })
 const mongoose = require("mongoose")
 const PORT = process.env.PORT | 5000
-    //ROUTES--START
 
-let routeRegister = require('./routing/register')
+//ROUTES--START
+
+const routeRegister = require('./routing/register')
+const routeGetDataByCookie = require('./routing/getDataByCookie')
 
 //ROUTES--END
 
 //--API--START
 
 var User = require('./api/db/models/user_account')
+
 
 /*---------------------*/
 
@@ -30,8 +33,10 @@ var User = require('./api/db/models/user_account')
 //--USE--
 app.use(bodyParser('t'))
 app.use(cookieParser('t'))
-app.use(routeRegister)
 app.use(cors);
+
+app.use(routeRegister)
+app.use(routeGetDataByCookie)
 
 
 //--USE-END
