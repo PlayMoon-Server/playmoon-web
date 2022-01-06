@@ -23,6 +23,8 @@ module.exports = async(cookie) => {
 
     if (user.password != cookiePw) return { err: true, error: "Dieser Cookie ist ungültig" }
 
+    user.password = "-secret-"
+
     return { err: false, error: null, user: user }
 
     //--
