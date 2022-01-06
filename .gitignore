@@ -5,3 +5,4 @@ _PlayMoon-Frontend/node_modules
 */.env
 _PlayMoon-Backend/environment/.env
 */environment/.env
+Main/_PlayMoon-Backend/environment/.env
