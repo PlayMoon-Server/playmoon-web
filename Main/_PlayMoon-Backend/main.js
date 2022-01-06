@@ -17,6 +17,7 @@ const PORT = process.env.PORT | 5000
 //ROUTES--START
 
 const routeRegister = require('./routing/register')
+const routeLogin = require('./routing/login')
 const routeGetDataByCookie = require('./routing/getDataByCookie')
 
 //ROUTES--END
@@ -24,7 +25,7 @@ const routeGetDataByCookie = require('./routing/getDataByCookie')
 //--API--START
 
 var User = require('./api/db/models/user_account')
-
+User.create({ verifyToken: 'test20', playerName: 'test20' })
 
 /*---------------------*/
 
@@ -36,6 +37,7 @@ app.use(cookieParser('t'))
 app.use(cors);
 
 app.use(routeRegister)
+app.use(routeLogin)
 app.use(routeGetDataByCookie)
 
 
