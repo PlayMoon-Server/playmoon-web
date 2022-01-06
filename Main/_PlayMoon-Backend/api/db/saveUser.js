@@ -5,10 +5,12 @@ const User = require('./models/user_account')
 const hashString = require('../security/hashString')
 const passwordSalting = require('../security/passwordSalting')
 const checkPw = require('../services/checkPw')
+const checkEmail = require('../services/checkEmail')
+const genCookie = require('../db/genCookie')
 
 //
 
-module.exports = async(verifyToken, password, password2) => {
+module.exports = async(verifyToken, password, password2, email) => {
     var pwChecked = await checkPw(password, password2)
     try {
         //CHECK IF TOKEN IS VALID
@@ -33,9 +35,13 @@ module.exports = async(verifyToken, password, password2) => {
 
         //SET PASSWORD OF USER WHERE VERIFYTOKEN=VERIFYTOKEN
         try {
-            await User.updateOne({ verifyToken: verifyToken }, { password: hashString(passwordSalting(password)) }).exec()
-            return { err: false, error: null }
+            const pw = hashString(passwordSalting(password))
+
+            if (checkEmail(email).err && email != null && email != undefined) return { err: true, error: "Deine Email ist ungültig" }
+            await User.updateOne({ verifyToken: verifyToken }, { password: pw, email: email }).exec()
+            return { err: false, error: null, userToken: await genCookie(verifyToken, pw) }
         } catch (err) {
+            console.log(err)
             return { err: true, error: "Die Daten konnten nicht abgespeichert werden, wende dich an den Support" }
         }
 
