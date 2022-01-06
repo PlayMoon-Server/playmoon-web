@@ -7,8 +7,8 @@ const checkCookie = require('../api/db/checkCookie')
 //Routing via express in mehrern dateien zu einer main.js zusammengestellt
 
 //Post request:
-router.post('/get/user/byCookieToken', async(req, res) => {
-    res.send(await checkCookie(req.body.cookieToken))
+router.get('/get/user/byCookieToken/:cookieToken', async(req, res) => {
+    res.send(await checkCookie(req.params.cookieToken))
 })
 
 module.exports = router
