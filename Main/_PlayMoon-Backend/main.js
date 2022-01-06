@@ -1,4 +1,6 @@
 const express = require('express')
+const router = express.Router()
+
 const app = express()
 
 const dotenv = require('dotenv').config({
@@ -19,21 +21,23 @@ let routeRegister = require('./routing/register')
 
 //--API--START
 
+var User = require('./api/db/models/user_account')
+
 /*---------------------*/
 
 //--API--END--
 
 //--USE--
-
-app.use(routeRegister)
-app.use(cors);
 app.use(bodyParser('t'))
 app.use(cookieParser('t'))
+app.use(routeRegister)
+app.use(cors);
+
 
 //--USE-END
 
 //Connect to mongodb
-let dbURI = 'mongodb+srv://admin:PQ9KKqflvgdCcqRb@cluster0.rmzdz.mongodb.net/playmoon?retryWrites=true&w=majority'
+let dbURI = process.env.dbURI
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => app.listen(PORT, () => console.log(`--Backend running on port: ${PORT}--`)))
-    .catch(err => console.log(err, "!"))
+    .catch(err => console.log('new Error while starting the Database: ', err))
