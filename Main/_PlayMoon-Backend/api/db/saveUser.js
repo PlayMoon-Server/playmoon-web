@@ -44,7 +44,6 @@ module.exports = async(verifyToken, password, password2, email) => {
             console.log(err)
             return { err: true, error: "Die Daten konnten nicht abgespeichert werden, wende dich an den Support" }
         }
-
     } catch (err) {
         return { err: true, error: err }
     }
