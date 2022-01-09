@@ -4,10 +4,10 @@ module.exports = (email) => {
 }
 
 function validateEmail(email) {
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (mailformat.test(email)) {
-        return true;
+        return true
     } else {
-        return false;
+        return false
     }
 }

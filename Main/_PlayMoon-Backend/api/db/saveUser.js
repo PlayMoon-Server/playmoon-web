@@ -11,6 +11,8 @@ const genCookie = require('../db/genCookie')
 //
 
 module.exports = async(verifyToken, password, password2, email) => {
+    if (!isValidData([verifyToken, password, password2])) return { err: true, error: "Fülle bitte alle Lücken aus!" }
+
     var pwChecked = await checkPw(password, password2)
     try {
         //CHECK IF TOKEN IS VALID
@@ -20,10 +22,10 @@ module.exports = async(verifyToken, password, password2, email) => {
 
         //--
 
-        //USER EXISTS - (check if alredy has a pw) qwda1
+        //USER EXISTS - (check if alredy has a pw)
 
         const user = await User.findOne({ verifyToken: verifyToken })
-        if (user.password) return { err: true, error: "Dieser Verifytoken wurde bereits benutzt" }
+        if (user.password) return { err: true, error: "Dieser Account existiert bereits, melde dich bitte an" }
 
         //--
 
@@ -37,7 +39,7 @@ module.exports = async(verifyToken, password, password2, email) => {
         try {
             const pw = hashString(passwordSalting(password))
 
-            if (checkEmail(email).err && email != null && email != undefined) return { err: true, error: "Deine Email ist ungültig" }
+            if (checkEmail(email).err && email != null && email != "") return { err: true, error: "Deine Email ist ungültig" }
             await User.updateOne({ verifyToken: verifyToken }, { password: pw, email: email }).exec()
             return { err: false, error: null, userToken: await genCookie(verifyToken, pw) }
         } catch (err) {
@@ -45,6 +47,16 @@ module.exports = async(verifyToken, password, password2, email) => {
             return { err: true, error: "Die Daten konnten nicht abgespeichert werden, wende dich an den Support" }
         }
     } catch (err) {
-        return { err: true, error: err }
+        return { err: true, error: "Die Datenbank funktioniert momentan nicht" }
     }
+}
+
+function isValidData(data) {
+    for (var i = 0; i < data.length; i++) {
+        if (!data[i]) {
+            console.log(data[i], data)
+            return false
+        }
+    }
+    return true
 }

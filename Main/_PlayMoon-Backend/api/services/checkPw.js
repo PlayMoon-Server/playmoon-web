@@ -1,6 +1,6 @@
 module.exports = async(pw, pw2) => {
-    var numbers = /[0-9]/g;
-    var upperCaseLetters = /[A-Z]/g;
+    var numbers = /[0-9]/g
+    var upperCaseLetters = /[A-Z]/g
 
     var errorObject = { err: false, error: null }
 
