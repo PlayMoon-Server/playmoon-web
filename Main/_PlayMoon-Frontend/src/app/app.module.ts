@@ -6,11 +6,15 @@ import { AppComponent } from './app.component'
 
 import { HttpClientModule } from '@angular/common/http'
 import { CookieService } from 'ngx-cookie-service';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    DatenschutzComponent    
   ],
   imports: [
     BrowserModule,
