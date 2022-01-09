@@ -7,7 +7,7 @@ const checkUser = require('../api/db/checkUser')
 
 //Post request:
 router.post('/auth/login', async(req, res) => {
-    res.send(await checkUser(req.body.playername, req.body.pw))
+    res.send(await checkUser(req.body.name, req.body.pw))
 })
 
 module.exports = router
