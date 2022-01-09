@@ -15,8 +15,6 @@ module.exports = async(cookie) => {
     const cookieVerifyToken = jwt.decode(cookie).verifyToken
     const cookiePw = jwt.decode(cookie).pw
     try {
-
-
         const userExists = await User.exists({ verifyToken: cookieVerifyToken })
 
         if (!userExists) return { err: true, error: "Dieser Cookie ist ungültig" }

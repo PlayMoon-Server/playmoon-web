@@ -24,6 +24,10 @@ const userAccountSchema = new Schema({
         type: String,
         required: false
     },
+    ip: {
+        type: String,
+        required: false
+    }
 
 }, { timestamps: true, collection: 'user_accounts' })
 

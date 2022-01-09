@@ -10,7 +10,7 @@ const genCookie = require('../db/genCookie')
 
 //
 
-module.exports = async(verifyToken, password, password2, email) => {
+module.exports = async(verifyToken, password, password2, email, ip) => {
     if (!isValidData([verifyToken, password, password2])) return { err: true, error: "Fülle bitte alle Lücken aus!" }
 
     var pwChecked = await checkPw(password, password2)
@@ -40,7 +40,7 @@ module.exports = async(verifyToken, password, password2, email) => {
             const pw = hashString(passwordSalting(password))
 
             if (checkEmail(email).err && email != null && email != "") return { err: true, error: "Deine Email ist ungültig" }
-            await User.updateOne({ verifyToken: verifyToken }, { password: pw, email: email }).exec()
+            await User.updateOne({ verifyToken: verifyToken }, { password: pw, email: email, ip: ip || 'false' }).exec()
             return { err: false, error: null, userToken: await genCookie(verifyToken, pw) }
         } catch (err) {
             console.log(err)

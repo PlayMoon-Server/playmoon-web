@@ -8,7 +8,7 @@ const saveUser = require('../api/db/saveUser')
 //Post request:
 router.post('/auth/register', async(req, res) => {
     //Cooming soon
-    res.send(await saveUser(req.body.verifyToken, req.body.pw, req.body.pw2, req.body.email))
+    res.send(await saveUser(req.body.verifyToken, req.body.pw, req.body.pw2, req.body.email, req.ip))
 })
 
 module.exports = router
