@@ -6,8 +6,8 @@ const genCookie = require('./genCookie')
 module.exports = async(name, pw) => {
     //-  
 
-    if (!name) return { err: true, error: "Bitte gebe einen Spielernamen an" }
-    if (!pw) return { err: true, error: "Bitte gebe ein Passwort an" }
+    if (!name) return { err: true, error: "Bitte gib einen Spielernamen an" }
+    if (!pw) return { err: true, error: "Bitte gib ein Passwort an" }
 
     //--
 
