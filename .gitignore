@@ -6,3 +6,6 @@ _PlayMoon-Frontend/node_modules
 _PlayMoon-Backend/environment/.env
 */environment/.env
 Main/_PlayMoon-Backend/environment/.env
+Main/_PlayMoon-Backend/environment/.env
+Main/_PlayMoon-Backend/environment/secrets/cert.pem
+Main/_PlayMoon-Backend/environment/secrets/privkey.pem
