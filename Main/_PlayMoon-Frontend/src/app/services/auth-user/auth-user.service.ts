@@ -49,7 +49,9 @@ export class AuthUserService {
   }
 
   async updateCookieAcToken(token: String) {
-    this.cookieService.set('accessToken', `${token}`)
+    let date = new Date();
+    date.setDate(date.getDate() + 30);
+    this.cookieService.set('accessToken', `${token}`, date )
   }
 
 
