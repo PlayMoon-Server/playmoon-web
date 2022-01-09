@@ -4,9 +4,15 @@ const Schema = mongoose.Schema
 const userAccountSchema = new Schema({
     verifyToken: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    playerName: {
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    rank: {
         type: String,
         required: true
     },
@@ -17,7 +23,8 @@ const userAccountSchema = new Schema({
     email: {
         type: String,
         required: false
-    }
+    },
+
 }, { timestamps: true, collection: 'user_accounts' })
 
 const UserAccount = mongoose.model('user_account', userAccountSchema)

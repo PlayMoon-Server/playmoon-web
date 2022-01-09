@@ -14,18 +14,25 @@ module.exports = async(cookie) => {
 
     const cookieVerifyToken = jwt.decode(cookie).verifyToken
     const cookiePw = jwt.decode(cookie).pw
+    try {
 
-    const userExists = await User.exists({ verifyToken: cookieVerifyToken })
 
-    if (!userExists) return { err: true, error: "Dieser Cookie ist ungültig" }
+        const userExists = await User.exists({ verifyToken: cookieVerifyToken })
 
-    const user = await User.findOne({ verifyToken: cookieVerifyToken })
+        if (!userExists) return { err: true, error: "Dieser Cookie ist ungültig" }
 
-    if (user.password != cookiePw) return { err: true, error: "Dieser Cookie ist ungültig" }
+        const user = await User.findOne({ verifyToken: cookieVerifyToken })
 
-    user.password = "-secret-"
+        if (user.password != cookiePw) return { err: true, error: "Dieser Cookie ist ungültig" }
 
-    return { err: false, error: null, user: user }
+        user.password = "-secret-"
+
+        return { err: false, error: null, user: user }
+
+    } catch (err) {
+        return { err: true, error: 'Die Datenbank funktioniert momentan nicht' }
+    }
+
 
     //--
 }
