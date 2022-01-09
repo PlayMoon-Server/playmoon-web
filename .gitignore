@@ -9,3 +9,4 @@ Main/_PlayMoon-Backend/environment/.env
 Main/_PlayMoon-Backend/environment/.env
 Main/_PlayMoon-Backend/environment/secrets/cert.pem
 Main/_PlayMoon-Backend/environment/secrets/privkey.pem
+Main/_PlayMoon-Frontend/dist

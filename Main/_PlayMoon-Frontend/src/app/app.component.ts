@@ -12,6 +12,7 @@ import { GetUserService } from './services/get-user/get-user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'PlayMoon';
 
@@ -26,9 +27,9 @@ export class AppComponent {
   loggedIn: Boolean = true
 
   user: any = {
-    rank: 'spieler'
-  } 
-  
+    rank: 'spieler',
+    name: 'noob'
+  }
 
   login: loginData = {
     name: "",
@@ -104,7 +105,7 @@ export class AppComponent {
 
   constructor (private elem: ElementRef, private sendHttpReq: SendHttpReqService, private checkUser: CheckUserService,
      private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService) {
-      
+     
   }
   
   async ngOnInit() {
@@ -148,7 +149,7 @@ export class AppComponent {
     const checkUser = await this.checkUser.checkUserByToken() 
     this.loggedIn = checkUser.isLoggedIn
     if(!this.loggedIn) return
-    this.user = checkUser.data.user    
+    this.user = checkUser.data.user
     this.avatar = this.getUser.avatar(this.user.name)
   }
 
