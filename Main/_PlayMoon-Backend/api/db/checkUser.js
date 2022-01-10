@@ -3,7 +3,7 @@ const hashString = require('../security/hashString')
 const passwordSalting = require('../security/passwordSalting')
 const genCookie = require('./genCookie')
 
-module.exports = async(name, pw) => {
+module.exports = async(name, pw, ip) => {
     //-  
 
     if (!name) return { err: true, error: "Bitte gib einen Spielernamen an" }
@@ -25,7 +25,7 @@ module.exports = async(name, pw) => {
 
         const user = await User.findOne({ name: name })
         if (user.password != hashString(passwordSalting(pw))) return { err: true, error: "Dein Passwort ist ungültig" }
-
+        User.updateOne({ name: name }, { ip: ip })
         const cookie = await genCookie(user.verifyToken, user.password)
         return { err: false, error: null, userToken: cookie }
     } catch (err) {
