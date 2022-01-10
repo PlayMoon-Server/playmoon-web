@@ -12,6 +12,12 @@ body {
     color: white;
 }
 
+a:focus,
+a:visited,
+a:active {
+    outline: none;
+}
+
 .challenges .bg {
     background-image: url(./assets/images/challenges.jpg);
     background-size: cover;
