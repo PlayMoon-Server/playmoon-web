@@ -25,7 +25,11 @@ module.exports = async(name, pw, ip) => {
 
         const user = await User.findOne({ name: name })
         if (user.password != hashString(passwordSalting(pw))) return { err: true, error: "Dein Passwort ist ungültig" }
-        User.updateOne({ name: name }, { ip: ip })
+
+        //Update ip
+
+        User.updateOne({ name: name }, { ip: ip }).exec()
+
         const cookie = await genCookie(user.verifyToken, user.password)
         return { err: false, error: null, userToken: cookie }
     } catch (err) {
