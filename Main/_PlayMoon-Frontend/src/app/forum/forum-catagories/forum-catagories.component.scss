@@ -1,0 +1,12 @@
+section.main {
+    height: 30vh;
+    margin-top: 30vh;
+    color: white;
+    text-align: center;
+}
+
+.scrolling-child {
+    height: unset;
+    margin-top: unset;
+    scroll-snap-align: center;
+}

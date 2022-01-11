@@ -6,6 +6,8 @@ div.content {
     justify-content: center;
     align-items: center;
     padding: 0px 30px;
+    margin-top: 30vh;
+    color: white;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -13,4 +15,14 @@ a,
 li {
     list-style: none;
     color: grey;
+}
+
+.scrolling {
+    scroll-snap-type: y proximity;
+    -ms-scroll-snap-type: y proximity;
+}
+
+.scrolling[_ngcontent-owv-c52] {
+    scroll-snap-type: y proximity;
+    -ms-scroll-snap-type: y proximity;
 }

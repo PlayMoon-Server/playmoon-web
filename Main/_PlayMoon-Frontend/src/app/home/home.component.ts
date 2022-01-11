@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, NgModule } from '@angular/core';
 import { SendHttpReqService } from './../services/send-http/send-http-req.service';
 import { CheckUserService } from './../services/check-user/check-user.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,7 +9,7 @@ import { GetUserService } from './../services/get-user/get-user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: '',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

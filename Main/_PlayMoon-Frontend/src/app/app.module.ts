@@ -9,12 +9,16 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
+import { ForumComponent } from './forum/forum.component';
+import { ForumCatagoriesComponent } from './forum/forum-catagories/forum-catagories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DatenschutzComponent    
+    DatenschutzComponent,
+    ForumComponent,
+    ForumCatagoriesComponent    
   ],
   imports: [
     BrowserModule,

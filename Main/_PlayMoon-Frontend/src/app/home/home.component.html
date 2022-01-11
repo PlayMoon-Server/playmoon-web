@@ -1,189 +1,21 @@
-<body>
-
-    <header [ngClass]="{blur: classes.header.blur, scrollHeader: classes.header.scrollHeader}">
-        <div class="player-count">
-
-            <div class="top">
-                <div class="server-ip" [ngStyle]="{background: styles.serverIp.background, fontSize: styles.serverIp.fontSize}" (click)="serverIpClick()">
-                    <p>{{ serverIpTxt }}</p>
-                </div>
-            </div>
-
-            <div class="bottom">
-                <div class="numbers">
-                    <div class="number">{{ first }}</div>
-                    <div class="number">{{ second }}</div>
-                    <div class="number">{{ third }}</div>
-                </div>
-
-            </div>
+<main class="scrolling-child">
+    <h1 class="slogan">
+        <div class="top">
+            <h1 id="title">PlayMoon.de</h1>
         </div>
-        <div class="logo">
-            <img class="img" src="../../assets/images/logo.jpg" alt="logo" loading="lazy" />
+        <div class="bottom">
+            <p id="slogan">Springe um den Mond <br> bis zum Ende.</p>
         </div>
-        <div class="profile">
-            <div class="user">
-                <div class="left">
-                    <div class="player">
-                        <p class="username" *ngIf="loggedIn">{{user.name}}</p>
-                    </div>
-                </div>
-                <div class="right">
-                    <img class="img" alt="Kopf" src="{{ avatar }}" class="profile-picture" loading="lazy">
-                    <div class="right-buttons">
-                        <button type="button" class="login" (click)="showForm('login')" *ngIf="!loggedIn">Anmelden</button>
-                        <button type="button" class="register" (click)="showForm('register')" *ngIf="!loggedIn">Registrieren</button>
-                        <button type="button" class="logout" (click)="logout()" *ngIf="loggedIn">Abmelden</button>
-                    </div>
-                </div>
-            </div>
-            <div class="rank" *ngIf="loggedIn">
-                <p class="rank">{{ user.rank[0].toUpperCase() + user.rank.substring(1) }}</p>
-            </div>
-        </div>
-
-        <div class="bars selectDisable" (click)="openNav()" [ngStyle]="{display: styles.mobile.bars.display}">
-            <img src="../../assets/images/bars-icon-white.jpg" alt="bars" class="bars-img img selectDisable">
-        </div>
-    </header>
-    <nav class="nav" [ngClass]="{blur: classes.nav.blur, scrollNav: classes.nav.scrollNav}">
-        <div class="middle">
-            <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../../assets/images/discord-icon.jpg" class="img" alt="discord"> DISCORD</button>
-            <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../../assets/images/shop-icon.jpg" class="img" alt="shop"> SHOP</button>
-            <button class="forum" onclick="window.location.href = 'http://forum.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../../assets/images/forum-icon.jpg" class="img" alt="forum" disabled> FORUM</button>
-        </div>
-    </nav>
-    <nav class="mobile-nav open" [ngClass]="{blur: classes.mobileNav.blur}" [ngStyle]="{visibility: styles.mobile.mobileNav.visibility, opacity: styles.mobile.mobileNav.opacity, display: styles.mobile.mobileNav.display}">
-        <div class="inner-nav" [ngStyle]="{visibility: styles.mobile.mobileInnerNav.visibility}">
-            <div class="leave" (click)="closeNav()">
-                <img class="img" src="../../assets/images/leave.jpg" alt="" loading="lazy">
-            </div>
-            <div class="profile-mobile">
-                <div class="user">
-                    <div class="left">
-                        <div class="player">
-                            <p class="username" *ngIf="loggedIn"> {{ user.name }} </p>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <img class="img" title="Kopf" [src]="avatar" class="profile-picture" loading="lazy">
-                        <button type="button" class="login" (click)="showForm('login')" *ngIf="!loggedIn">Anmelden</button>
-                        <button type="button" class="register" (click)="showForm('register')" *ngIf="!loggedIn">Registrieren</button>
-                        <button type="button" class="logout" (click)="logout()" *ngIf="loggedIn">Abmelden</button>
-                    </div>
-                </div>
-                <div class="rank" *ngIf="loggedIn">
-                    <p class="rank">{{ user.rank[0].toUpperCase() + user.rank.substring(1) }}</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'"><img class="img" src="../../assets/images/discord-icon.jpg" alt=""> DISCORD</button>
-                <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'"><img class="img" src="../../assets/images/shop-icon.jpg" alt=""> SHOP</button>
-                <button class="forum" onclick="window.location.href = 'http://forum.playmoon.de'"><img class="img" src="../../assets/images/forum-icon.jpg" alt="" aria-disabled="true" disabled>FORUM</button>
-            </div>
-        </div>
-
-    </nav>
-    <div class="scrolling" (scroll)="windowScroll($event)">
-        <main class="scrolling-child">
-            <h1 class="slogan">
-                <div class="top">
-                    <h1 id="title">PlayMoon.de</h1>
-                </div>
-                <div class="bottom">
-                    <p id="slogan">Springe um den Mond <br> bis zum Ende.</p>
-                </div>
-            </h1>
-        </main>
-        <section class="challenges scrolling-child">
-            <div class="bg">
-                <div class="content">
-                    <h1 class="animationSizeBig">CHALLENGES</h1>
-                    <p class="animationSizeMedium">
-                        Spiele Minecraft alleine oder mit deinen Freunden durch und hab viel Spaß. Aber <b>ACHTUNG</b>: Du kannst auch nach Belieben Challenges aktivieren! Und noch dabei kannst du deinen Server nach eigenen Wünschen einstellen. Bei Challenges-Vorschläge
-                        kannst du dich gerne bei uns im Discord melden und ein Ticket schreiben 😀
-                    </p>
-                </div>
-            </div>
-        </section>
-        <footer class="scrolling-child">
-            <div class="footer-content">
-                <div class="left">
-                    <p>© PLAYMOON 2022</p>
-                </div>
-                <div class="middle">
-                    <p>Unser Hoster: <a href="https://www.byte-store.de/">Byte-Store.DE</a> <img alt="hoster" src="https://www.byte-store.de/assets/img/logo-mirco.png?h=1102d9f100bc188af5722353d476c7ca"> </p>
-                </div>
-                <div class="right"><a (click)="goToPrivacyPolice()">Datenschutzerklärung</a></div>
-            </div>
-        </footer>
-    </div>
-
-
-    <div class="loginForm" [ngClass]="{removeFilter: classes.forms.formLogin.removeFilter}">
-        <div class="innerForm innerFormLogin blur" [ngClass]="{hidden: classes.forms.innerFormLogin.hidden}">
-            <div class="leaveLogin" (click)="hideForm('login')">
-                <img class="img" src="../../assets/images/leave.jpg" alt="" loading="lazy">
-            </div>
-            <form (submit)="loginBtn()" method="post">
-                <div class="top">
-                    <h1>Anmelden</h1>
-                </div>
-                <div class="bottom">
-                    <input text="true" type="text" placeholder="Spielername" class="username" name="_username_" [(ngModel)]="login.name" (keydown.enter)="loginBtn()" required>
-                    <input text="true" type="password" placeholder="Passwort" class="password" name="_pw_" [(ngModel)]="login.pw" (keydown.enter)="loginBtn()" required>
-                    <div class="stayLoggedIn">
-                        <p>Mit dem Anmelden bestätigst du, dass die Seite alle <b>Cookies</b> verwenden darf.</p>
-                    </div>
-                    <input type="button" value="Anmelden" class="btn" (click)="loginBtn()">
-                    <div class="links">
-                        <a href="">Passwort vergessen</a>
-                        <br>
-                        <br> Noch kein Account?
-                        <a href="#" (click)="showForm('register')">Registrieren</a><br>
-                    </div>
-
-                </div>
-            </form>
+    </h1>
+</main>
+<section class="challenges scrolling-child">
+    <div class="bg">
+        <div class="content">
+            <h1 class="animationSizeBig">CHALLENGES</h1>
+            <p class="animationSizeMedium">
+                Spiele Minecraft alleine oder mit deinen Freunden durch und hab viel Spaß. Aber <b>ACHTUNG</b>: Du kannst auch nach Belieben Challenges aktivieren! Und noch dabei kannst du deinen Server nach eigenen Wünschen einstellen. Bei Challenges-Vorschläge
+                kannst du dich gerne bei uns im Discord melden und ein Ticket schreiben 😀
+            </p>
         </div>
     </div>
-    <div class="registerForm removeFilter" [ngClass]="{removeFilter: classes.forms.formRegister.removeFilter}">
-        <div class="innerForm innerFormRegister hidden blur" [ngClass]="{hidden: classes.forms.innerFormRegister.hidden}">
-            <div class="leaveLogin leaveRegister" (click)="hideForm('register')">
-                <img class="img" src="../../assets/images/leave.jpg" alt="" loading="lazy">
-            </div>
-            <form (submit)="registerBtn()" action="" method="post">
-                <div class="top">
-                    <h1>Registrieren</h1>
-                </div>
-                <div class="bottom">
-                    <input text="true" type="text" placeholder="Verify-Token (mc: /verify)*" class="verifyToken" name="__verifyToken__" [(ngModel)]="register.verifyToken" (keydown.enter)="registerBtn()" required>
-                    <input text="true" type="email" placeholder="Email (optional)" class="username" name="__email__" [(ngModel)]="register.email" (keydown.enter)="registerBtn()" required>
-                    <input text="true" type="password" placeholder="Passwort*" class="password" name="__pw__" [(ngModel)]="register.pw" (keydown.enter)="registerBtn()" required>
-                    <input text="true" type="password" placeholder="Passwort wiederholen*" class="pw2 " name="__pw2__" [(ngModel)]="register.pw2" (keydown.enter)="registerBtn()" required>
-                    <div class="stayLoggedIn">
-                        <p>Mit dem Registrieren bestätigst du, dass die Seite alle <b>Cookies</b> verwenden darf und du die <a (click)="goToPrivacyPolice()">Datenschutzerklärung</a> akzeptierst.</p>
-                    </div>
-                    <input type="submit" value="Registrieren" class="btn">
-                    <div class="links">
-                        Bereits ein Account?
-                        <a href="#" (click)="showForm('login')">Anmelden</a><br>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="main-popup" *ngIf="currentErr.err">
-        <div class="popup-content">
-            <div class="leaveError" (click)="resetError()">
-                <img class="img" src="../../assets/images/leave.jpg" alt="" loading="lazy">
-            </div>
-            <div class="errorContent">
-                <img src="../../assets/images/error.png" alt="Fehler" loading="lazy">
-                <p>{{ currentErr.error }}</p>
-            </div>
-        </div>
-    </div>
-</body>
-<router-outlet></router-outlet>
+</section>
