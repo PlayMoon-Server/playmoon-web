@@ -1,5 +1,4 @@
 <body>
-
     <header [ngClass]="{blur: classes.header.blur, scrollHeader: classes.header.scrollHeader}">
         <div class="player-count">
 
@@ -50,7 +49,8 @@
         <div class="middle">
             <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/discord-icon.jpg" class="img" alt="discord"> DISCORD</button>
             <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/shop-icon.jpg" class="img" alt="shop"> SHOP</button>
-            <button class="forum" onclick="window.location.href = 'http://forum.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/forum-icon.jpg" class="img" alt="forum" disabled> FORUM</button>
+            <button *ngIf="this.router.url == '/'" class="forum" (click)="goTo('forum/catagories')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/forum-icon.jpg" class="img" alt="forum" disabled> FORUM</button>
+            <button *ngIf="this.router.url != '/'" class="forum" (click)="goTo('/')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img class="img" src="../assets/images/home-icon.png" alt="" aria-disabled="true" disabled>HOME</button>
         </div>
     </nav>
     <nav class="mobile-nav open" [ngClass]="{blur: classes.mobileNav.blur}" [ngStyle]="{visibility: styles.mobile.mobileNav.visibility, opacity: styles.mobile.mobileNav.opacity, display: styles.mobile.mobileNav.display}">
@@ -79,7 +79,8 @@
             <div class="buttons">
                 <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'"><img class="img" src="../assets/images/discord-icon.jpg" alt=""> DISCORD</button>
                 <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'"><img class="img" src="../assets/images/shop-icon.jpg" alt=""> SHOP</button>
-                <button class="forum" onclick="window.location.href = 'http://forum.playmoon.de'"><img class="img" src="../assets/images/forum-icon.jpg" alt="" aria-disabled="true" disabled>FORUM</button>
+                <button *ngIf="this.router.url == '/'" class="forum" (click)="goTo('forum/catagories')"><img class="img" src="../assets/images/forum-icon.jpg" alt="" aria-disabled="true" disabled>FORUM</button>
+                <button *ngIf="this.router.url != '/'" class="forum" (click)="goTo('/')"><img class="img" src="../assets/images/home-icon.png" alt="" aria-disabled="true" disabled>HOME</button>
             </div>
         </div>
 
@@ -94,7 +95,7 @@
                 <div class="middle">
                     <p>Unser Hoster: <a href="https://www.byte-store.de/">Byte-Store.DE</a> <img alt="hoster" src="https://www.byte-store.de/assets/img/logo-mirco.png?h=1102d9f100bc188af5722353d476c7ca"> </p>
                 </div>
-                <div class="right"><a (click)="goToPrivacyPolice()">Datenschutzerklärung</a></div>
+                <div class="right"><a (click)="goTo('datenschutz')">Datenschutzerklärung</a></div>
             </div>
         </footer>
     </div>

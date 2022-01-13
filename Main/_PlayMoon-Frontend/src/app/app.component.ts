@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, NgModule } from '@angular/core';
 import { SendHttpReqService } from './services/send-http/send-http-req.service';
 import { CheckUserService } from './services/check-user/check-user.service';
@@ -105,32 +104,31 @@ export class AppComponent {
 
 
   constructor (private elem: ElementRef, private sendHttpReq: SendHttpReqService, private checkUser: CheckUserService,
-     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService, private router: Router) {
-     
+     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService, public router: Router) {
   }
   
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     await this.checkIfLoggedIn()
     this.embedAnimations()
     this.countDownTimeout(0, 100)
     window.addEventListener('resize', this.resize.bind(this))
   }
 
-  resetError() {
+  resetError(): void {
     this.currentErr = {
       err: false,
       error: ''
     }
   }
 
-  setError(error: string) {
+  setError(error: string): void {
     this.currentErr = {
       err: true,
       error: error
     }
   }
 
-  resetData() {
+  resetData(): void {
     this.login = {
       name: "",
       pw: ""
@@ -146,7 +144,7 @@ export class AppComponent {
     this.resetError()
   }
 
-  async checkIfLoggedIn() {
+  async checkIfLoggedIn(): Promise<void> {
     const checkUser = await this.checkUser.checkUserByToken() 
     this.loggedIn = checkUser.isLoggedIn
     if(!this.loggedIn) return
@@ -154,18 +152,24 @@ export class AppComponent {
     this.avatar = this.getUser.avatar(this.user.name)
   }
 
-  async logout() {
+  async logout(): Promise<void> {
     this.loggedIn = false
     this.avatar = this.getUser.avatar('noob')
     this.cookieService.delete('accessToken')
   }
 
-  goToPrivacyPolice() {
+  goTo(route: String): void {
+    this.router.navigateByUrl(`/${route}`)
+    this.closeNav()
+    this.scrollToTop()
+  }
+
+  goToPrivacyPolice(): void {
     this.router.navigateByUrl('/datenschutz')
   }
 
 
-  async loginBtn() {
+  async loginBtn(): Promise<void> {
    let authLogin = await this.authUser.loginByPassword(this.login)
    if(authLogin.err) return this.setError(authLogin.error)
    this.checkIfLoggedIn()
@@ -174,7 +178,7 @@ export class AppComponent {
    this.resetError() 
   }
 
-  async registerBtn() {
+  async registerBtn(): Promise<void> {
     let authRegister = await this.authUser.registerByVerifyToken(this.register)
     if(authRegister.err) return this.setError(authRegister.error)
     this.checkIfLoggedIn()
@@ -183,18 +187,18 @@ export class AppComponent {
     this.resetError() 
   }
 
-  reloadPage() {
+  reloadPage(): void {
     window.location.reload()
   }
 
-  embedAnimations() {
+  embedAnimations(): void {
     setTimeout(()=>{
       this.styles.navBtns.width = '200px'
       this.styles.navBtns.height = '4.8vh'
     }, 100)
   }
 
-  countDownTimeout(i: number, number: number) {
+  countDownTimeout(i: number, number: number): void {
 
     if (i > number) {
         this.first = 1
@@ -233,7 +237,7 @@ export class AppComponent {
     }, 3000 / number)
   }
 
-  copyToClipboard(textToCopy: any) {
+  copyToClipboard(textToCopy: any): Promise<void> {
       if (navigator.clipboard && window.isSecureContext) {
           return navigator.clipboard.writeText(textToCopy);
       } else {
@@ -245,11 +249,11 @@ export class AppComponent {
           document.body.appendChild(textArea);
           textArea.focus();
           textArea.select();
-          return
+          return new Promise(() => {})
       }
   }
 
-  serverIpClick(){
+  serverIpClick(): void {
     this.copyToClipboard('PlayMoon.de')
     this.serverIpTxt = 'COPIED'
     this.styles.serverIp.background = 'green'
@@ -260,7 +264,7 @@ export class AppComponent {
     }, 500)
   }
 
-  windowScroll(ev: any) {
+  windowScroll(ev: any): void {
     if (ev.target.scrollTop > 15) {
         this.classes.header.blur = true
         this.classes.header.scrollHeader = true
@@ -273,8 +277,12 @@ export class AppComponent {
     this.classes.nav.blur = false
     this.classes.nav.scrollNav = false
   }
-  
-  openNav() {
+
+  scrollToTop(): void {
+    (document.querySelector('.scrolling') as HTMLElement).scroll(0, 0)
+  }
+
+  openNav(): void {
     if(window.innerWidth > 1080) return
 
     this.styles.mobile.mobileInnerNav.visibility = 'visible'
@@ -290,7 +298,7 @@ export class AppComponent {
     }, 200)
   }
 
-  closeNav() {
+  closeNav(): void {
       this.styles.mobile.mobileNav.visibility = 'hidden'
       this.styles.mobile.mobileNav.opacity = '0'
 
@@ -301,7 +309,7 @@ export class AppComponent {
       this.styles.mobile.bars.display = (window.innerWidth > 1080) ? 'none' : 'block' 
   }
 
-  resize() {
+  resize(): void {
     if (window.innerWidth > 1080) {
       this.styles.mobile.bars.display = 'none'
       return
@@ -309,7 +317,7 @@ export class AppComponent {
     this.styles.mobile.bars.display = 'block'
   }
 
-  hideForm(type: String) {
+  hideForm(type: String): void {
     switch (type) {
         case "login":
             this.classes.forms.innerFormLogin.hidden = true
@@ -329,7 +337,7 @@ export class AppComponent {
     }
   }
 
-  showForm(type: String) {
+  showForm(type: String): void {
     this.resetData()
     switch (type) {
         case "login":

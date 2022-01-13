@@ -7,6 +7,7 @@ import { AuthUserService } from './../services/auth-user/auth-user.service';
 import { loginData, registerData, user } from './../types/auth.type';
 import { GetUserService } from './../services/get-user/get-user.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: '',
@@ -105,7 +106,9 @@ export class HomeComponent {
 
 
   constructor (private elem: ElementRef, private sendHttpReq: SendHttpReqService, private checkUser: CheckUserService,
-     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService, private router: Router) {
+     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService, private router: Router,
+     private titleService: Title
+     ) {
      
   }
   
@@ -114,6 +117,7 @@ export class HomeComponent {
     this.embedAnimations()
     this.countDownTimeout(0, 100)
     window.addEventListener('resize', this.resize.bind(this))
+    this.titleService.setTitle('PlayMoon - Home')
   }
 
   resetError() {

@@ -8,5 +8,9 @@ if (environment.production) {
   enableProdMode()
 }
 
+let title: string = 'PlayMoon - Home'
+
+document.head.title = title
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err))
