@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { ForumComponent } from './forum/forum.component';
 import { ForumCatagoriesComponent } from './forum/forum-catagories/forum-catagories.component';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ForumCatagoriesComponent } from './forum/forum-catagories/forum-catagor
     HomeComponent,
     DatenschutzComponent,
     ForumComponent,
-    ForumCatagoriesComponent    
+    ForumCatagoriesComponent,
+    StatusComponent    
   ],
   imports: [
     BrowserModule,

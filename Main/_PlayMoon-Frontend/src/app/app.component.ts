@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthUserService } from './services/auth-user/auth-user.service';
 import { loginData, registerData, user } from './types/auth.type';
 import { GetUserService } from './services/get-user/get-user.service';
+import { ServerStatusService } from './services/get-server-status/server-status.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,9 +19,9 @@ export class AppComponent {
 
   avatar: String = "https://mc-heads.net/avatar/noob"
 
-  first: Number = 0
-  second: Number = 0
-  third: Number = 0
+  first: any = 0
+  second: any = 0
+  third: any = 0
 
   serverIpTxt = 'PlayMoon.de'
 
@@ -104,13 +105,14 @@ export class AppComponent {
 
 
   constructor (private elem: ElementRef, private sendHttpReq: SendHttpReqService, private checkUser: CheckUserService,
-     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService, public router: Router) {
+     private cookieService: CookieService, private authUser: AuthUserService, private getUser: GetUserService,
+     public router: Router, private status: ServerStatusService) {
   }
   
   async ngOnInit(): Promise<void> {
     await this.checkIfLoggedIn()
     this.embedAnimations()
-    this.countDownTimeout(0, 100)
+    this.countDownTimeout(0, await this.status.getOnlinePlayers('playmoon.de') || 0, false)
     window.addEventListener('resize', this.resize.bind(this))
   }
 
@@ -198,14 +200,26 @@ export class AppComponent {
     }, 100)
   }
 
-  countDownTimeout(i: number, number: number): void {
-
+  countDownTimeout(i: number, number: number, didRun: boolean): void {
     if (i > number) {
-        this.first = 1
+      if (number < 10) {
+        this.first = 0
         this.second = 0
-        this.third = 0
-        i = 0
-        return
+        this.third = parseInt(number.toString()[0])
+      }
+      if (number < 100 && number > 9) {
+          this.first = 0
+          this.second = parseInt(number.toString()[0])
+          this.third = parseInt(number.toString()[1])
+
+      }
+      if (number > 99) {
+          this.first = parseInt(number.toString()[0])
+          this.second = parseInt(number.toString()[1])
+          this.third = parseInt(number.toString()[2])
+      }
+      i = 0
+      return
     }
 
     var iString = i.toString()
@@ -232,10 +246,13 @@ export class AppComponent {
 
     i++
 
+    if(!didRun) return this.countDownTimeout(i, number, true)
+
     setTimeout(() => {
-        this.countDownTimeout(i, number)
-    }, 3000 / number)
+        this.countDownTimeout(i, number, true)
+    }, 2000 / number)
   }
+
 
   copyToClipboard(textToCopy: any): Promise<void> {
       if (navigator.clipboard && window.isSecureContext) {

@@ -1,0 +1,36 @@
+<section class="main">
+    <div class="parent">
+        <div class="child">
+            <div class="inner">
+                <div class="left">Minecraft-Server:</div>
+                <div class="right rounded-btn" [ngStyle]="{background: statusStyle.mc.background}">
+                    <p>{{status.mc.divContent}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="child">
+            <div class="inner">
+                <div class="left">Datenbank-Status:</div>
+                <div class="right rounded-btn" [ngStyle]="{background: statusStyle.backend.database.background}">
+                    <p>{{status.backend.database}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="child">
+            <div class="inner">
+                <div class="left">Discord-Bot:</div>
+                <div class="right rounded-btn">
+                    <p>....</p>
+                </div>
+            </div>
+        </div>
+        <div class="child">
+            <div class="inner">
+                <div class="left">Web-Backend:</div>
+                <div class="right rounded-btn" [ngStyle]="{background: statusStyle.backend.web.background}">
+                    <p>{{status.backend.web}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
