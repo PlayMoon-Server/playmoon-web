@@ -38,6 +38,7 @@ const PORT = process.env.PORT || 5000
 const routeRegister = require('./routing/register')
 const routeLogin = require('./routing/login')
 const routeGetDataByCookie = require('./routing/getDataByCookie')
+const routeCheckStatus = require('./routing/checkStatus')
 
 //ROUTES--END
 
@@ -57,6 +58,7 @@ app.use(cors)
 app.use(routeRegister)
 app.use(routeLogin)
 app.use(routeGetDataByCookie)
+app.use(routeCheckStatus)
 
 
 //--USE-END

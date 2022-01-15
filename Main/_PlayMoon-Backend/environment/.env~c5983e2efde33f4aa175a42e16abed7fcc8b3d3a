@@ -1,9 +1,0 @@
-DATABASE_HOST=localhost
-DATABASE_USER=root
-DATABASE_PASSWORD=
-DATABASE_DB=web-backend
-PORT=5000
-secretString=******
-dbURI=*******
-jwtSecret=********
-
