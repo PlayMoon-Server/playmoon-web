@@ -1,0 +1,23 @@
+section.main {
+    height: 40vh;
+    margin-top: 40vh;
+    color: white;
+}
+
+.scrolling-child {
+    height: unset;
+    margin-top: unset;
+    scroll-snap-align: center;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35vh;
+    font-size: 35px;
+    color: white;
+    h1 {
+        text-shadow: 5px 5px black;
+    }
+}

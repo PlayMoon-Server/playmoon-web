@@ -15,6 +15,7 @@ export class StatusComponent implements OnInit {
     onlinePlayers: false,
     divContent: '...'
    },
+   dc: '...',
    backend: {
      web: '...',
      database: '...'
@@ -30,6 +31,9 @@ export class StatusComponent implements OnInit {
   statusStyle: any = {
     mc: {
       background: 'black'
+    },
+    dc: {
+      background: '#000'
     },
     backend: {
       web: {
@@ -52,9 +56,14 @@ export class StatusComponent implements OnInit {
       this.status.mc.online = await this.statusService.getOnlineStatus('playmoon.de')
       if(this.status.mc.online) {
         this.check().checkMaintenance()
+        this.statusStyle.dc.background = this.colors.sucessColor
+        this.status.dc = 'online'
       } else {
         this.status.mc.divContent = 'offline',
         this.statusStyle.mc.background = this.colors.alertColor
+
+        this.statusStyle.dc.background = this.colors.alertColor
+        this.status.dc = 'offline'
       }
     }
 

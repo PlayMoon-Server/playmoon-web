@@ -664,6 +664,12 @@ form {
         width: 60vw;
         height: 20%;
     }
+    .buttons .status {
+        gap: 5px;
+        display: flex;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
     .profile-mobile {
         position: relative;
         width: 100vw;
