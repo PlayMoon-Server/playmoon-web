@@ -52,7 +52,7 @@ export class AppComponent {
   styles: any = {
     navBtns: {
       width: '150px',
-      height: '3vh'
+      height: '50px'
     },
     serverIp: {
       background: '#fff',
@@ -196,7 +196,7 @@ export class AppComponent {
   embedAnimations(): void {
     setTimeout(()=>{
       this.styles.navBtns.width = '200px'
-      this.styles.navBtns.height = '4.8vh'
+      this.styles.navBtns.height = '35px'
     }, 100)
   }
 

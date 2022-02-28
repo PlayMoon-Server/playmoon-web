@@ -12,6 +12,8 @@ import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { ForumComponent } from './forum/forum.component';
 import { ForumCatagoriesComponent } from './forum/forum-catagories/forum-catagories.component';
 import { StatusComponent } from './status/status.component';
+import { DiscordComponent } from './discord/discord.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { StatusComponent } from './status/status.component';
     DatenschutzComponent,
     ForumComponent,
     ForumCatagoriesComponent,
-    StatusComponent    
+    StatusComponent,
+    DiscordComponent,
+    ShopComponent    
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="logo">
-            <img class="img" src="../assets/images/logo.jpg" alt="logo" loading="lazy" />
+            <img class="img" src="../assets/images/logo.jpg" alt="logo" loading="lazy" (click)="goTo('/')" [ngStyle]="{cursor: 'pointer'}" />
         </div>
         <div class="profile">
             <div class="user">
@@ -48,9 +48,8 @@
         <div class="middle">
             <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/discord-icon.jpg" class="img" alt="discord"> DISCORD</button>
             <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/shop-icon.jpg" class="img" alt="shop"> SHOP</button>
-            <button *ngIf="this.router.url == '/'" class="forum" (click)="goTo('forum/catagories')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/forum-icon.jpg" class="img" alt="forum" disabled> FORUM</button>
-            <button *ngIf="this.router.url != '/'" class="forum" (click)="goTo('/')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img class="img" src="../assets/images/home-icon.png" alt="" aria-disabled="true" disabled>HOME</button>
-            <button class="forum" (click)="goTo('/status')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img class="img" src="../assets/images/status.png" alt="" aria-disabled="true" disabled>STATUS</button>
+            <button *ngIf="!this.router.url.includes('forum')" class="forum" (click)="goTo('/forum/catagories')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img src="../assets/images/forum-icon.jpg" class="img" alt="forum"> FORUM</button>
+            <button *ngIf="!this.router.url.includes('status')" class="forum" (click)="goTo('/status')" [ngStyle]="{width: styles.navBtns.width, height: styles.navBtns.height}"><img class="img" src="../assets/images/status.png" alt="">STATUS</button>
         </div>
     </nav>
     <nav class="mobile-nav open" [ngClass]="{blur: classes.mobileNav.blur}" [ngStyle]="{visibility: styles.mobile.mobileNav.visibility, opacity: styles.mobile.mobileNav.opacity, display: styles.mobile.mobileNav.display}">
@@ -79,9 +78,8 @@
             <div class="buttons">
                 <button class="discord" onclick="window.location.href = 'http://discord.playmoon.de'"><img class="img" src="../assets/images/discord-icon.jpg" alt=""> DISCORD</button>
                 <button class="shop" onclick="window.location.href = 'http://shop.playmoon.de'"><img class="img" src="../assets/images/shop-icon.jpg" alt=""> SHOP</button>
-                <button *ngIf="this.router.url == '/'" class="forum" (click)="goTo('forum/catagories')"><img class="img" src="../assets/images/forum-icon.jpg" alt="" aria-disabled="true" disabled>FORUM</button>
-                <button *ngIf="this.router.url != '/'" class="forum" (click)="goTo('/')"><img class="img" src="../assets/images/home-icon.png" alt="" aria-disabled="true" disabled>HOME</button>
-                <button class="status" (click)="goTo('/status')"><img class="img" src="../assets/images/status.png" alt="" aria-disabled="true" disabled>Status</button>
+                <button *ngIf="!this.router.url.includes('forum')" class="forum" (click)="goTo('/forum/catagories')"><img class="img" src="../assets/images/forum-icon.jpg" alt="">FORUM</button>
+                <button *ngIf="!this.router.url.includes('status')" class="status" (click)="goTo('/status')"><img class="img" src="../assets/images/status.png" alt="">Status</button>
             </div>
         </div>
 

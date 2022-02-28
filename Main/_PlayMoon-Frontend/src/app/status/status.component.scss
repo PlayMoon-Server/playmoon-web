@@ -25,13 +25,13 @@
         border-radius: 25px;
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
-        width: 50vw;
+        width: 550px;
         height: 70px;
         .inner {
             display: inline-flex;
             align-items: center;
             justify-content: space-between;
-            width: 25vw;
+            width: 370px;
             .left {
                 display: flex;
                 align-items: center;
@@ -45,6 +45,7 @@
                 color: white;
                 background: #000;
                 transition: all ease-in-out .6s;
+                text-transform: capitalize;
             }
         }
     }
@@ -60,10 +61,19 @@
     
     @media (max-width: 700px) {
         .child {
-            width: 95vw;
+            width: 400px;
             .inner {
                 justify-content: space-between;
-                width: 80vw;
+                width: 350px;
+            }
+        }
+    }
+    
+    @media (max-width: 500px) {
+        .child {
+            width: 350px;
+            .inner {
+                width: 310px
             }
         }
     }
